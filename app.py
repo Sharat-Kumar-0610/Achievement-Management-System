@@ -371,7 +371,10 @@ def teacher_required(f):
 
 @app.route("/")
 def home():
-    firebase_config = get_firebase_config()
+    if FIREBASE_AVAILABLE and get_firebase_config:
+        firebase_config = get_firebase_config()
+    else:
+        firebase_config = DEFAULT_FIREBASE_CONFIG
     return render_template("home.html", firebase_config=firebase_config)
 
 
