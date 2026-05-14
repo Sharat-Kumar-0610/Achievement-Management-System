@@ -368,6 +368,12 @@ def teacher_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+# Custom 404 Error Handler
+@app.errorhandler(404)
+def page_not_found(error):
+    """Handle 404 errors with custom template"""
+    return render_template("404.html"), 404
+
 
 @app.route("/")
 def home():
